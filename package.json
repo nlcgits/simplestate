@@ -1,0 +1,29 @@
+{
+  "name": "@nextlevelcoder/simplestate",
+  "version": "0.0.1",
+  "description": "A simple state sharing class for React. Use instead of MobX or Redux.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlcgits/simplestate.git"
+  },
+  "keywords": [
+    "mobx",
+    "react",
+    "redux",
+    "share",
+    "state"
+  ],
+  "author": "Joseph Cohen <joseph@nextlevelcoder.com> (https://nextlevelcoder.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nlcgits/simplestate/issues"
+  },
+  "homepage": "https://github.com/nlcgits/simplestate#readme",
+  "dependencies": {
+    "react": ">=16.8.0"
+  }
+}
