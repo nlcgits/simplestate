@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export default class SimpleState {
-    states = {};
+class SimpleState {
+    constructor() {
+        this.components = new Map();
+        this.states = {};
+    }
 
     /**
      * Helper method used to get data associated with a state and initialize it if needed.
@@ -54,7 +57,6 @@ export default class SimpleState {
      * @param {string=} container An object that should contain the states. Access states via this.state.<container>.<state> instead of this.state.<state>.
      */
     loadStates(component, states, container) {
-
         component.state = component.state || {};
         let updateState = null;
         if (container) {
@@ -69,8 +71,6 @@ export default class SimpleState {
         });
     }
 
-    /** @type{React.Component} React components that are bound to states. */
-    components = new Map();
     /**
      * Binds states in a component to SimpleState instance. Use in componentWillMount or after.
      * Don't forget to unbind when class is unmounted.
@@ -201,4 +201,6 @@ export default class SimpleState {
     }
 }
 
-export const simpleState = new SimpleState();
+const simpleState = new SimpleState();
+
+export { SimpleState as default, simpleState };
