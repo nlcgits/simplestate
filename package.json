@@ -1,6 +1,6 @@
 {
   "name": "@nextlevelcoder/simplestate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple state sharing class for React. Use instead of MobX or Redux.",
   "main": "src/index.js",
   "scripts": {
