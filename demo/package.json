@@ -2,7 +2,7 @@
   "name": "simplestatedemo",
   "version": "0.0.1",
   "dependencies": {
-    "@nextlevelcoder/simplestate": "",
+    "@nextlevelcoder/simplestate": "latest",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-scripts": "3.2.0"

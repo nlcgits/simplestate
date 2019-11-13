@@ -203,4 +203,4 @@ class SimpleState {
 
 const simpleState = new SimpleState();
 
-export { SimpleState as default, simpleState };
+export { SimpleState, simpleState };
