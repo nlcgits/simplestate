@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <HelloButton name="Avi" />
+        <HelloButton name="Avi" hello={false} />
         <HelloButtonClass name="Jack" />
         <HelloButton name="Sam" />
         <HelloButtonClass name="Susie" />

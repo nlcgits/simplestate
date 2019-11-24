@@ -1,2 +1,5 @@
-// We'll include a helper class soon to manage multiple SimpleStates.
-export { SimpleState as default, simpleState } from './SimpleState';
+import { SimpleState, simpleState } from './SimpleState';
+import { SimpleStateMap, simpleStateMap } from './SimpleStateMap';
+
+
+export { SimpleState as default, simpleState, SimpleStateMap, simpleStateMap };

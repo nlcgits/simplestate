@@ -2,7 +2,7 @@ import React from 'react';
 import { simpleState } from '@nextlevelcoder/simplestate';
 
 function HelloButton(props) {
-    const [hello, setHello] = simpleState.useState('hello', true);
+    const [hello, setHello] = simpleState.useState('hello', props.hello === false ? false : true);
     function handleClick(e) {
         setHello(!hello);
     }
