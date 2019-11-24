@@ -108,7 +108,7 @@ class SimpleState {
             const stateData = this.initState(state);
             stateData.subscribers.add(compData.subscriber);
             stateData.components.add(component);
-            initialStateObj[state] = this.states[state];
+            initialStateObj[state] = this.states[state].value;
         });
         if (container) {
             const newState = {};

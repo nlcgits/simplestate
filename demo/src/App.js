@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <HelloButton name="Avi" hello={false} />
         <HelloButtonClass name="Jack" />
-        <HelloButton name="Sam" />
+        <HelloButton name="Sam" hello={true} />
         <HelloButtonClass name="Susie" />
         <HelloButton name="Rob" />
         <HelloButtonClass name="Albert" />
