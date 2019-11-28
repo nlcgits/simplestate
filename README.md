@@ -39,37 +39,54 @@ import { simpleState } from '@nextlevelcoder/simplestate';
 
 class MyComponent extends Component {
     componentWillMount() {
-        simpleState.bindStates(this, ['hello']);
+        simpleState.bindState(this, 'hello');
     }
     componentWillUnmount() {
-        simpleState.unbindStates(this);
-        // To unbind just hello, use simpleState.unbindStates(this, ['hello']);
+        simpleState.unbindState(this);
+        // To unbind just hello, use simpleState.unbindState(this, 'hello');
     }
     . . .
 }
 ```
 
-If you want to group all states from a SimpleState you can pass an optional third parameter with the group name:
+To bind multiple states, pass an array as the second param instead of a string:
+```js
+import { simpleState } from '@nextlevelcoder/simplestate';
+
+class MyComponent extends Component {
+    componentWillMount() {
+        simpleState.bindState(this, ['connected', 'latency']);
+    }
+    componentWillUnmount() {
+        simpleState.unbindState(this);
+        // To unbind multiple states (but not all states) call simpleState.unbindState(this, ['connected', 'latency]);
+    }
+    . . .
+}
+```
+
+
+
+If you want to group related states in a single object on your state, you can pass an optional third parameter with the group name:
 ```js
 class MyComponent extends Component {
     componentWillMount() {
         // Access with this.state.sharedState.hello
-        simpleState.bindStates(this, ['hello'], 'sharedState');
-        // Access with this.state.networkState.online
-        simpleState.bindStates(this, ['online'], 'networkState');
+        simpleState.bindState(this, 'hello', 'sharedState');
+        // Access with this.state.networkState.online and this.state.networkState.latency
+        simpleState.bindState(this, ['online', 'latency'], 'networkState');
     }
     componentWillUnmount() {
-        // Group name isn't required to unbind.
-        simpleState.unbindStates(this);
+        // Group name isn't required to unbind, even when listing states.
+        simpleState.unbindState(this);
     }
     . . .
 }
 ```
 
-To set state from a class component, you can call setState or when setting multiple states, call mergeState:
+To set state from a class component, you can call setState the same way you would for a component's state:
 ```js
-simpleState.setState('hello', false);
-simpleState.mergeState({ hello: false });
+simpleState.setState({ hello: false });
 ```
 
 ### Methods
@@ -94,7 +111,7 @@ SimpleState is a class you can instantiate as many times as you'd like.
 
 #### SimpleStateMap
 
-The best way to use multiple SimpleStates is with a SimpleStateMap. This is just a [DefaultClass]() with a helper that creates new SimpleStates as its default value.
+The best way to use multiple SimpleStates is with a SimpleStateMap. This is just a [DefaultMap](https://github.com/nlcgits/defaultmap) with a helper that creates new SimpleStates as its default value.
 
 A global instance of SimpleStateMap can be imported as used as follows:
 
@@ -107,7 +124,17 @@ const shoppingCartState = simpleStateMap.get('shoppingCart');
 
 Then you can use each SimpleState the way you used the global simpleState instance in the example above.
 
-Note: simpleStateMap is a global instance of SimpleStateMap. You can make multiple SimpleStateMaps if you really want to complicate your code.
+simpleStateMap is a global instance of SimpleStateMap. You can import and instantiate multiple SimpleStateMaps if you really want to complicate your code.
+
+```js
+import { SimpleStateMap } from '@nextlevelcoder/simplestate';
+
+const accountState = new SimpleStateMap();
+const shoppingCartState = new SimpleStateMap();
+
+// Export your manually create SimpleStateMaps to use them in other files.
+export { accountState, shoppingCartState };
+```
 
 #### Manually
 
@@ -119,6 +146,7 @@ import { SimpleState } from '@nextlevelcoder/simplestate';
 const accountState = new SimpleState();
 const shoppingCartState = new SimpleState();
 
+// Export your SimpleStates to use them in other files.
 export { accountState, shoppingCartState };
 ```
 

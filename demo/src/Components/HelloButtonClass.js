@@ -5,18 +5,18 @@ class HelloButtonClass extends React.Component {
     constructor(props) {
         super(props);
         // Optional
-        simpleState.loadStates(this, ['hello']);
+        simpleState.loadState(this, ['hello']);
     }
 
     componentWillMount() {
-        simpleState.bindStates(this, ['hello']);
+        simpleState.bindState(this, ['hello']);
     }
 
     componentWillUnmount() {
-        simpleState.unbindStates(this);
+        simpleState.unbindState(this);
     }
     handleClick = (e) => {
-        simpleState.setState('hello', !this.state.hello);
+        simpleState.setState({ hello: !this.state.hello });
     }
     render() {
         let helloText = this.state.hello ? "Hello" : "Goodbye";

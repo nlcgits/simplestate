@@ -56,7 +56,10 @@ class SimpleState {
      * @param {Array<string>} states The list of states to bind.
      * @param {string=} container An object that should contain the states. Access states via this.state.<container>.<state> instead of this.state.<state>.
      */
-    loadStates(component, states, container) {
+    loadState(component, states, container) {
+        if (!Array.isArray(states)) {
+            states = [states];
+        }
         component.state = component.state || {};
         let updateState = null;
         if (container) {
@@ -75,11 +78,14 @@ class SimpleState {
      * Binds states in a component to SimpleState instance. Use in componentWillMount or after.
      * Don't forget to unbind when class is unmounted.
      * @param {React.Component} component The component to bind to the states.
-     * @param {Array<string>} states The list of states to bind.
+     * @param {string|Array<string>} states The list of states to bind. Will be converted to an Array if a string is passed.
      * @param {string=} container An object that should contain the states. 
      *  Access states via this.state.<container>.<state> instead of this.state.<state>.
      */
-    bindStates(component, states, container) {
+    bindState(component, states, container) {
+        if (!Array.isArray(states)) {
+            states = [states];
+        }
         if (!this.components.has(component)) {
             this.components.set(component, {
                 states: new Set(), containers: new Map()
@@ -123,9 +129,12 @@ class SimpleState {
     /**
      * Unbinds a class based React component from states.
      * @param {React.Component} component The component to unbind from the states.
-     * @param {Array<string>=} states The list of states to unbind. If not set, unbinds all states.
+     * @param {string|Array<string>=} states The list of states to unbind. If not set, unbinds all states.
      */
-    unbindStates(component, states) {
+    unbindState(component, states) {
+        if (!Array.isArray(states)) {
+            states = [states];
+        }
         if (!this.components.has(component)) {
             return;
         }
@@ -149,18 +158,18 @@ class SimpleState {
      * Sets state in the classic React fashion.
      * @param {{*}} stateObj 
      */
-    mergeState(stateObj) {
+    setState(stateObj) {
         Object.keys(stateObj).forEach((key) => {
-            this.setState(key, stateObj[key]);
+            this.setSingleState(key, stateObj[key]);
         });
     }
 
     /**
-     * Sets a single named state.
+     * Sets a single named state. More efficient than setState for setting a single stat
      * @param {string} name 
      * @param {*} value 
      */
-    setState(name, value) {
+    setSingleState(name, value) {
         const state = this.initState(name, value);
         state.value = value;
         state.subscribers.forEach((subscriber) => {
@@ -197,7 +206,7 @@ class SimpleState {
                 state.subscribers.delete(subscriber);
             }
         });
-        return [value, (val) => this.setState(name, val)];
+        return [value, (val) => this.setSingleState(name, val)];
     }
 }
 
