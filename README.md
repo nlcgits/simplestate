@@ -28,7 +28,7 @@ function MyComponent(props) {
 }
 ```
 
-To set state you can use the returned set function (setHello) or SimpleState.setState or SimpleState.mergeState as demonstrated in the Class Component section.
+To set state you can use the returned set function (setHello) or SimpleState.setState as demonstrated in the Class Component section.
 
 ### Class Components
 
@@ -118,8 +118,8 @@ A global instance of SimpleStateMap can be imported as used as follows:
 ```js
 import { simpleStateMap } from '@nextlevelcoder/simplestate';
 
-const accountState = simpleStateMap.get('account');
-const shoppingCartState = simpleStateMap.get('shoppingCart');
+const accountState = simpleStateMap.getState('account');
+const shoppingCartState = simpleStateMap.getState('shoppingCart');
 ```
 
 Then you can use each SimpleState the way you used the global simpleState instance in the example above.
