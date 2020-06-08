@@ -169,7 +169,8 @@ class SimpleState {
       states[name].value = value;
     });
     Object.keys(states).forEach((name) => {
-      const value = states[name].value;
+      const state = states[name];
+      const value = state.value;
       state.subscribers.forEach((subscriber) => {
         subscriber(name, value);
       });
