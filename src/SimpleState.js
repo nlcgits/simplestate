@@ -218,7 +218,7 @@ class SimpleState {
       return () => {
         state.subscribers.delete(subscriber);
       };
-    });
+    }, []);
     return [value, (val) => this.setSingleState(name, val)];
   }
 }
