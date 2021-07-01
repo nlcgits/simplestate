@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/nlcgits/simplestate#readme",
   "dependencies": {
-    "@nextlevelcoder/defaultmap": ">=0.0.4",
+    "@nextlevelcoder/defaultmap": ">=0.0.4"
   },
   "peerDependencies": {
     "react": ">=16.8"
