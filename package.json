@@ -1,6 +1,6 @@
 {
   "name": "@nextlevelcoder/simplestate",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A simple state sharing class for React. Use instead of MobX or Redux.",
   "main": "src/index.js",
   "scripts": {
@@ -23,8 +23,9 @@
     "url": "https://github.com/nlcgits/simplestate/issues"
   },
   "homepage": "https://github.com/nlcgits/simplestate#readme",
-  "dependencies": {
-    "@nextlevelcoder/defaultmap": "^0.0.4",
-    "react": "^17.0.1"
+  "dependencies": { },
+  "peerDependencies": {
+    "@nextlevelcoder/defaultmap": ">=0.0.4",
+    "react": ">=16.8"
   }
 }
