@@ -219,7 +219,9 @@ class SimpleState {
         state.subscribers.delete(subscriber);
       };
     }, []);
-    return [value, (val) => this.setSingleState(name, val)];
+    // Ensure we're returning a consistent setter to match useState behavior.
+    state.setter = state.setter || ((val) => this.setSingleState(name, val));
+    return [value, state.setter];
   }
 }
 
